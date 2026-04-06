@@ -3,6 +3,7 @@
 
 > This file is the agent's constitution. Read it in full before touching any code.
 > Update it at the end of every session using the Self-Correction Contract (§5).
+> Also read **GUARDRAILS.md** — operational safety limits, blast radius rules, and recovery protocol.
 
 ---
 
