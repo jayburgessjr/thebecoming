@@ -20,8 +20,8 @@ export async function GET(
   _request: NextRequest,
   { params }: { params: Promise<{ chapter: string }> }
 ) {
-  const { chapter } = await params
-  const chapterIndex = parseInt(chapter, 10) - 1
+  const { chapter: chapterParam } = await params
+  const chapterIndex = parseInt(chapterParam, 10) - 1
 
   if (isNaN(chapterIndex) || chapterIndex < 0 || chapterIndex >= chapters.length) {
     return NextResponse.json({ error: 'Chapter not found' }, { status: 404 })
