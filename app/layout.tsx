@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Cinzel, Cormorant_Garamond, DM_Sans } from 'next/font/google'
+import Script from 'next/script'
 
 import { ThemeProvider } from '@/components/theme-provider'
 import { ToastProvider } from '@/components/toast-provider'
@@ -40,7 +41,9 @@ export default function RootLayout({
       <head>
         <link href="https://fonts.googleapis.com" rel="preconnect" />
         <link crossOrigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect" />
-        <script
+        <Script
+          id="theme-init"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               try {
