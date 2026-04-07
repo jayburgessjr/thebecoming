@@ -18,9 +18,10 @@ function stripHtml(html: string): string {
 
 export async function GET(
   _request: NextRequest,
-  { params }: { params: { chapter: string } }
+  { params }: { params: Promise<{ chapter: string }> }
 ) {
-  const chapterIndex = parseInt(params.chapter, 10) - 1
+  const { chapter } = await params
+  const chapterIndex = parseInt(chapter, 10) - 1
 
   if (isNaN(chapterIndex) || chapterIndex < 0 || chapterIndex >= chapters.length) {
     return NextResponse.json({ error: 'Chapter not found' }, { status: 404 })
