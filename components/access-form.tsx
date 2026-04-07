@@ -79,7 +79,7 @@ export function AccessForm() {
   }
 
   return (
-    <main className="page-enter" id="page-signup">
+    <main className="page-enter fullscreen-page" id="page-signup">
       <div className="signup-left">
         <button className="signup-left-back" onClick={() => router.push('/')}>
           ← Back
@@ -95,13 +95,13 @@ export function AccessForm() {
         </div>
 
         <h2>
-          Your <em>river
+          A calmer <em>way
           <br />
-          awaits.</em>
+          in.</em>
         </h2>
         <p>
-          Enter your details and receive instant, free access to the full book — read online,
-          download the PDF, and revisit anytime.
+          Enter your details for calm, immediate access to the full book. Read online, download
+          the PDF, and return whenever the words meet you again.
         </p>
 
         <div className="access-perks">
@@ -122,8 +122,8 @@ export function AccessForm() {
           <div className="perk">
             <div className="perk-icon">✦</div>
             <div className="perk-text">
-              <strong>Daily Meditation</strong>
-              A new passage delivered to your inbox
+              <strong>Return Gently</strong>
+              A quiet companion for returning, not rushing
             </div>
           </div>
         </div>
@@ -135,10 +135,10 @@ export function AccessForm() {
           <h2 className="form-title">
             Begin
             <br />
-            your <em>return.</em>
+            with <em>stillness.</em>
           </h2>
           <p className="form-sub">
-            No payment. No catch. Just your name and email to unlock the book.
+            No payment. No rush. Just your name and email to open the book.
           </p>
 
           <div className="form-field">

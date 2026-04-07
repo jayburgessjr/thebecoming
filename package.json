@@ -6,12 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "extract:chapters": "node scripts/extract-chapters.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2",
-    "next": "14.2.29",
+    "next": "16.2.2",
     "pdf-parse": "^2.4.5",
     "react": "^18",
     "react-dom": "^18"
@@ -21,8 +21,8 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.29",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.2",
     "postcss": "^8",
     "tailwindcss": "^3",
     "typescript": "^5"

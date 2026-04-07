@@ -7,18 +7,18 @@ import { readAccessSession } from '@/lib/session'
 
 export function SessionGuard({ children }: { children: ReactNode }) {
   const router = useRouter()
-  const [isAllowed, setIsAllowed] = useState(false)
+  const [isAllowed] = useState(() => {
+    if (typeof window === 'undefined') {
+      return false
+    }
+    return Boolean(readAccessSession()?.firstName)
+  })
 
   useEffect(() => {
-    const session = readAccessSession()
-
-    if (!session?.firstName) {
+    if (!isAllowed) {
       router.replace('/access')
-      return
     }
-
-    setIsAllowed(true)
-  }, [router])
+  }, [isAllowed, router])
 
   if (!isAllowed) {
     return <div style={{ background: '#16130f', minHeight: '100vh' }} />
