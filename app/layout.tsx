@@ -41,6 +41,8 @@ export default function RootLayout({
       <head>
         <link href="https://fonts.googleapis.com" rel="preconnect" />
         <link crossOrigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect" />
+      </head>
+      <body className={`${cinzel.variable} ${cormorant.variable} ${dmSans.variable}`} suppressHydrationWarning>
         <Script
           id="theme-init"
           strategy="beforeInteractive"
@@ -53,8 +55,6 @@ export default function RootLayout({
             `,
           }}
         />
-      </head>
-      <body className={`${cinzel.variable} ${cormorant.variable} ${dmSans.variable}`} suppressHydrationWarning>
         <ThemeProvider>
           <ToastProvider>{children}</ToastProvider>
         </ThemeProvider>
