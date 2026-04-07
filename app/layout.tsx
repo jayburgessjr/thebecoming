@@ -54,7 +54,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${cinzel.variable} ${cormorant.variable} ${dmSans.variable}`}>
+      <body className={`${cinzel.variable} ${cormorant.variable} ${dmSans.variable}`} suppressHydrationWarning>
         <ThemeProvider>
           <ToastProvider>{children}</ToastProvider>
         </ThemeProvider>
