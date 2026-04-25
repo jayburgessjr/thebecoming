@@ -2,29 +2,36 @@
   "name": "thebecoming",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint .",
-    "extract:chapters": "node scripts/extract-chapters.mjs"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "eslint ."
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.3",
     "@supabase/supabase-js": "^2",
-    "next": "16.2.2",
-    "pdf-parse": "^2.4.5",
-    "react": "^18",
-    "react-dom": "^18"
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.511.0",
+    "next-themes": "^0.4.6",
+    "react": "^19",
+    "react-dom": "^19",
+    "react-router-dom": "^7.1.1",
+    "tailwind-merge": "^3.3.0"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "autoprefixer": "^10",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
     "eslint": "^9",
-    "eslint-config-next": "16.2.2",
     "postcss": "^8",
-    "tailwindcss": "^3",
-    "typescript": "^5"
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5",
+    "vite": "^6.0.7"
   }
 }

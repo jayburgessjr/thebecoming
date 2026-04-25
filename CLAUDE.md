@@ -10,16 +10,18 @@
 ## §1 · Mission & Constraints
 
 ### Primary Objective
-Maintain, debug, and evolve *The Way of Becoming* — a Next.js 14 App Router book website for Jay Burgess — while preserving the exact visual design (ink/parchment/gold system, Cormorant Garamond + Cinzel + DM Sans font stack, all animations and hover states) established in the source HTML.
+Maintain, debug, and evolve *The Way of Becoming* — a Next.js App Router book website for Jay Burgess — preserving the visual design system (shadcn/ui + Tailwind v4, DM Sans + Inter font stack, OKLCH warm neutral color palette, floating pill navbar) established in the 2026-04-25 redesign.
 
 ### Stack Snapshot
 | Layer | Technology |
 |---|---|
-| Framework | Next.js 14.2.29 · App Router · TypeScript |
-| Styling | Tailwind CSS + custom globals.css (CSS vars, no component library) |
+| Framework | Next.js 16.x · App Router · TypeScript |
+| Styling | Tailwind CSS v4 (CSS-first, no tailwind.config.js) + shadcn/ui (new-york style) |
+| UI Components | shadcn/ui via `components/ui/` — Button, Card, Input, Label, Badge |
 | Backend | Supabase (project: `dabhfvdgcsmzlorbgdjq`) |
 | Auth | sessionStorage-based (`the-way-of-becoming-session`) |
-| Hosting target | Vercel |
+| Theme | next-themes (`attribute="class"`, defaultTheme="light") |
+| Hosting target | Netlify |
 | Repo | github.com/jayburgessjr/thebecoming |
 
 ### Autonomous — Act Without Asking
@@ -38,13 +40,13 @@ Maintain, debug, and evolve *The Way of Becoming* — a Next.js 14 App Router bo
 - **Installing new npm dependencies** — list package name, version, and reason
 - **Changes to `.env.local`** — read it aloud (redacted) and confirm before editing
 - **Any change to `supabase/migrations/`** — these are append-only; never edit a past migration
-- **Modifying the visual design** — colors, fonts, layout proportions are frozen unless Jay explicitly requests a redesign
+- **Modifying the visual design** — the OKLCH color palette, DM Sans + Inter fonts, shadcn component style, and floating pill navbar are frozen unless Jay explicitly requests a redesign
 
 ### Hard Prohibitions (Never Do)
 - Never commit `.env.local` or any file containing real keys
 - Never run `git push --force` on `main`
 - Never use `--no-verify` to skip hooks
-- Never add UI component libraries (shadcn, radix, chakra, MUI, etc.)
+- Never add additional UI component libraries beyond the existing shadcn/ui setup (no chakra, MUI, etc.)
 - Never redesign pages; only fix or extend what exists
 - Never expose `NEXT_PUBLIC_SUPABASE_ANON_KEY` in client-side code outside of the intended `supabase-server.ts` pattern
 
@@ -127,8 +129,12 @@ Before touching any code, in this order:
 ### Known Session Patterns (Hardened from Experience)
 - **Stale `.next` cache** causes webpack chunk 404s and `Cannot read properties of undefined (reading 'call')` errors. Fix: `rm -rf .next` then restart dev server. Do not debug the bundle — just clear it.
 - **Browser extension errors** (`mce-autosize-textarea`, `No Listener: tabs:outgoing.message.ready`) are Grammarly/MCE. Never investigate these as app bugs.
-- **White page on `/hub`** is `SessionGuard` returning `null` before `useEffect` fires. The fix (dark placeholder div) is already in place.
+- **White page on `/hub`** is `SessionGuard` returning `null` before `useEffect` fires. The fix (`<div className="min-h-screen bg-background" />`) is already in place.
 - **Supabase key**: `.env.local` must use the legacy JWT anon key, not the `sb_publishable_*` key. The JWT key was retrieved in session and applied.
+- **React 19 `useRef`**: requires an explicit initial argument — `useRef<T | undefined>(undefined)` not `useRef<T>()`. Hits at build time.
+- **Tailwind v4**: no `tailwind.config.ts` — all config is CSS-first in `globals.css`. Uses `@import "tailwindcss"`, `@custom-variant dark`, and `@theme inline {}`. `@tailwindcss/postcss` is the PostCSS plugin (not `tailwindcss`). Autoprefixer is built in, do not add it to postcss config.
+- **shadcn dark mode**: next-themes with `attribute="class"` adds `.dark` to `<html>`. The `@custom-variant dark (&:is(.dark *))` in globals.css wires this to Tailwind's `dark:` variant.
+- **Design system tokens**: All colors are OKLCH. Primary is warm gold/cream `oklch(0.88 0.06 86.47)`. Edit in `:root` / `.dark` blocks in `globals.css` — never hardcode color values in components.
 
 ---
 
