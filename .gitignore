@@ -36,3 +36,6 @@ yarn-error.log*
 
 # Local Netlify folder
 .netlify
+audiobook/chapters/
+tsconfig.tsbuildinfo
+supabase/.temp/
